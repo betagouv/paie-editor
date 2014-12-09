@@ -1,21 +1,23 @@
-Session.setDefault('net', 1445.38);
+Session.setDefault('brut', 1445.38);
 Session.setDefault('superbrut', 2250);
 Session.setDefault('weeklyHours', 40);
 
 Template.body.events({
-	'keyup [name="net"]': function(event, template) {
-		Session.set('net', event.target.value.replace(',', '.'));
+	'keyup [name="brut"]': function(event, template) {
+		Session.set('brut', event.target.value.replace(',', '.'));
 
-		Meteor.call('openfisca',
-			'salsuperbrut',
-			{ salnet: Number(Session.get('net')) },
-			function(error, result) {
-				if (error)
-					alert(error);
+		Object.keys(Taxes.fr).forEach(function(openfiscaCode) {
+			Meteor.call('openfisca',
+				openfiscaCode,
+				{ salbrut: Number(Session.get('brut')) },
+				function(error, result) {
+					if (error)
+						console.error(error);
 
-				Session.set('superbrut', result.data.value);
-			}
-		);
+					Session.set(openfiscaCode, result.data.value);
+				}
+			);
+		})
 	},
 
 	'keyup [name="weeklyHours"]': function(event, template) {
@@ -29,8 +31,8 @@ var HOURS_IN_A_MONTH = 151.67,
 	INDIE_TAX_RATIO = 0.2;
 
 Template.body.helpers({
-	net: function() {
-		return	Session.get('net');
+	brut: function() {
+		return	Session.get('brut');
 	},
 
 	superbrut: function() {
