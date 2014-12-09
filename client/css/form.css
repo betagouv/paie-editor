@@ -1,0 +1,39 @@
+label {
+	font-weight: bold;
+}
+
+body {
+	display: table;
+	width: 50em;
+	margin: auto;
+}
+
+h2 {
+	column-span: all;
+}
+
+.entry {
+	display: table-row
+}
+
+input {
+	width: 5em;
+}
+
+.input, .label {
+	display: table-cell;
+	width: 40%;
+}
+
+.input, input {
+	text-align: right;
+}
+
+.input {
+	padding-right: .25em;
+}
+
+.label {
+	padding-left: .25em;
+	text-align: left;
+}
