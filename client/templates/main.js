@@ -2,28 +2,35 @@ Session.setDefault('brut', 1445.38);
 Session.setDefault('superbrut', 2250);
 Session.setDefault('weeklyHours', 40);
 
+function updateTaxes() {
+	Object.keys(Taxes.fr).forEach(function(openfiscaCode) {
+		Meteor.call('openfisca',
+			openfiscaCode,
+			{ salbrut: Number(Session.get('brut')) },
+			function(error, result) {
+				if (error)
+					console.error(error);
+
+				Session.set(openfiscaCode, result.data.value);
+			}
+		);
+	});
+}
+
+
 Template.body.events({
 	'keyup [name="brut"]': function(event, template) {
 		Session.set('brut', event.target.value.replace(',', '.'));
 
-		Object.keys(Taxes.fr).forEach(function(openfiscaCode) {
-			Meteor.call('openfisca',
-				openfiscaCode,
-				{ salbrut: Number(Session.get('brut')) },
-				function(error, result) {
-					if (error)
-						console.error(error);
-
-					Session.set(openfiscaCode, result.data.value);
-				}
-			);
-		})
+		updateTaxes();
 	},
 
 	'keyup [name="weeklyHours"]': function(event, template) {
 		Session.set('weeklyHours', event.target.value);
 	}
 });
+
+Template.body.rendered = updateTaxes;
 
 
 var HOURS_IN_A_MONTH = 151.67,
