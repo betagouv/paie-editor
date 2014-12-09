@@ -1,0 +1,12 @@
+th, td {
+	text-align: right;
+	border: 1px solid black;
+}
+
+td.how {
+	border: none;
+}
+
+.how a {
+	text-decoration: none;
+}
