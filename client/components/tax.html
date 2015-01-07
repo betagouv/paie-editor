@@ -1,7 +1,9 @@
 <template name="tax">
-	<tr>
-		<th>{{name}}</th>
-		<td>{{currency amount}}&nbsp;€</td>
-		<td class="how"><a href="https://wiki.openfisca.fr/index.php/{{code}}">?</a></td>
-	</tr>
+	{{#if amount}}
+		<tr>
+			<th>{{name}}</th>
+			<td>{{currency amount}}&nbsp;€</td>
+			<td class="how"><a href="https://wiki.openfisca.fr/index.php/{{code}}">?</a></td>
+		</tr>
+	{{/if}}
 </template>
