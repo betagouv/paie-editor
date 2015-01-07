@@ -5,21 +5,23 @@
 <body>
 	<h2>Pour mon entreprise</h2>
 
-	<div class="entry">
-		<div class="input">
-			de
-			<input name="taille" type="number" min="0" placeholder="1" value="1" step="1" max="9999"/>
+	<form>
+		<div class="entry">
+			<div class="input">
+				de
+				<input name="effectif_entreprise" type="number" min="0" placeholder="1" value="1" step="1" max="9999"/>
+			</div>
+			<div class="label">
+				<label for="effectif_entreprise">salariés <abbr title="Équivalent Temps Plein">ETP</abbr></label>
+				<a class="help" href="https://wiki.openfisca.fr/index.php/Taille_d%27entreprise" title="Moyenne sur l'année, au prorata du temps plein.">?</a>,
+			</div>
 		</div>
-		<div class="label">
-			<label for="taille">salariés <abbr title="Équivalent Temps Plein">ETP</abbr></label>
-			<a class="help" href="https://wiki.openfisca.fr/index.php/Taille_d%27entreprise" title="Moyenne sur l'année, au prorata du temps plein.">?</a>,
-		</div>
-	</div>
 
-	<h2>ma fiche de paie pour un employé</h2>
-	payé ce mois
+		<h2>ma fiche de paie pour un employé</h2>
+		payé ce mois
 
-	{{> salary}}
+		{{> salary}}
+	</form>
 
 
 	<h2>est</h2>

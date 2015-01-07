@@ -2,12 +2,14 @@ Session.setDefault('brut', 1445.38);
 Session.setDefault('superbrut', 2250);
 Session.setDefault('weeklyHours', 40);
 
-Template.body.created = function() {
+Template.body.rendered = function() {
+	Session.set('queryString', $(this.find('form')).serialize());
+
 	Meteor.autorun(function() {
 		Object.keys(Taxes.fr).forEach(function(openfiscaCode) {
 			Meteor.call('openfisca',
 				openfiscaCode,
-				{ salbrut: Number(Session.get('brut')) },
+				Session.get('queryString'),
 				function(error, result) {
 					if (error)
 						console.error(error);
@@ -19,10 +21,9 @@ Template.body.created = function() {
 	});
 }
 
-
 Template.body.events({
 	'change': function(event, template) {
-		Session.set(event.target.name, event.target.value.replace(',', '.'));
+		Session.set('queryString', $(template.find('form')).serialize());
 	}
 });
 
