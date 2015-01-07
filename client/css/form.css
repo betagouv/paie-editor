@@ -16,8 +16,8 @@ h2 {
 	display: table-row
 }
 
-input {
-	width: 5em;
+input[name^="titre_restaurant"] {
+	width: 2em;
 }
 
 .input, .label {
