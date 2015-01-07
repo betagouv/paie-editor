@@ -56,5 +56,11 @@ Template.body.helpers({
 
 	weeklyHours: function() {
 		return	Session.get('weeklyHours');
+	},
+
+	todayISO: function() {
+		var today = new Date();
+
+		return today.toISOString().split('T')[0];
 	}
 });
