@@ -2,7 +2,7 @@
 	{{#if amount}}
 		<tr>
 			<th>{{name}}</th>
-			<td>{{currency amount}}&nbsp;€</td>
+			<td class="{{#if updating}}updating{{/if}}">{{currency amount}}&nbsp;€</td>
 			<td class="how"><a href="https://loi.meteor.com/{{code}}">?</a></td>
 		</tr>
 	{{/if}}

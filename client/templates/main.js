@@ -7,6 +7,8 @@ Template.body.rendered = function() {
 
 	Meteor.autorun(function() {
 		Object.keys(Taxes.fr).forEach(function(openfiscaCode) {
+			Session.set(openfiscaCode + '-updating', true);
+
 			Meteor.call('openfisca',
 				openfiscaCode,
 				Session.get('queryString'),
@@ -15,6 +17,7 @@ Template.body.rendered = function() {
 						console.error(error);
 
 					Session.set(openfiscaCode, result.data.value);
+					Session.set(openfiscaCode + '-updating', false);
 				}
 			);
 		});

@@ -10,3 +10,7 @@ td.how {
 .how a {
 	text-decoration: none;
 }
+
+.updating {
+	opacity: 0.6;
+}
