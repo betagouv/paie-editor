@@ -1,7 +1,19 @@
 <template name="payslip">
+	<h3>Cotisations patronales</h3>
 	<table>
 	{{#each taxes}}
-		{{> tax}}
+		{{#if is tag 'employeur'}}
+			{{> tax}}
+		{{/if}}
+	{{/each}}
+	</table>
+
+	<h3>Cotisations salariales</h3>
+	<table>
+	{{#each taxes}}
+		{{#if is tag 'employe'}}
+			{{> tax}}
+		{{/if}}
 	{{/each}}
 	</table>
 </template>

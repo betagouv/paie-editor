@@ -9,11 +9,16 @@ Template.payslip.helpers({
 				continue;
 
 			result.push({
-				code: openfiscaCode,
-				name: Taxes.fr[openfiscaCode].name
+				code	: openfiscaCode,
+				name	: Taxes.fr[openfiscaCode].name,
+				tag		: Taxes.fr[openfiscaCode].tag
 			});
 		}
 
 		return result;
+	},
+
+	is: function(val1, val2) {
+		return val1 === val2;
 	}
 });
